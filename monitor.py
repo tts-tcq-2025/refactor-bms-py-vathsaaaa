@@ -11,15 +11,19 @@ def vitalsOutofRange():
     sys.stdout.flush()
     sleep(1)
 
-def vitals_ok(temperature, pulseRate, spo2):
-  checks = [
-      (temperature > 102 or temperature < 95, "Temperature critical!"),
-      (pulseRate < 60 or pulseRate > 100, "Pulse Rate is out of range!"),
-      (spo2 < 90, "Oxygen Saturation out of range!"),
-  ]
-  failed = next(((cond, msg) for cond, msg in checks if cond), None)
+def check_vitals(temperature, pulseRate, spo2):
+  if temperature > 102 or temperature < 95:
+      return "Temperature critical!"
+  if pulseRate < 60 or pulseRate > 100:
+      return "Pulse Rate is out of range!"
+  if spo2 < 90:
+      return "Oxygen Saturation out of range!"
+  return None
 
-  if failed:
-      print(failed[1])
+def vitals_ok(temperature, pulseRate, spo2):
+  error_message = check_vitals(temperature, pulseRate, spo2)
+  if error_message:
+      print(error_message)
+      blink_alert()
       return False
   return True
