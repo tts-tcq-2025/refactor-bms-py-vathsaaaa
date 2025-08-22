@@ -33,6 +33,6 @@ def check_vitals(temperature, pulseRate, spo2):
 def vitals_ok(temperature, pulseRate, spo2):
   error_messages = check_vitals(temperature, pulseRate, spo2)
   if error_messages:
-    vitalsOutofRange(error_message)
+    vitalsOutofRange(error_messages)
     return False
   return True
