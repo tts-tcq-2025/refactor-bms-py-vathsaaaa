@@ -28,8 +28,7 @@ def vitalsOutofRange(error_messages):
       sleep(1)
 
 def check_vitals(temperature, pulseRate, spo2):
-
-return [msg for cond, msg in checks if cond]
+  return [msg for cond, msg in checks if cond]
 
 def vitals_ok(temperature, pulseRate, spo2):
   error_messages = check_vitals(temperature, pulseRate, spo2)
