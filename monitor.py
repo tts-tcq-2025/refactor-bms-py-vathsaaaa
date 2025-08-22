@@ -17,10 +17,9 @@ def vitals_ok(temperature, pulseRate, spo2):
       (pulseRate < 60 or pulseRate > 100, "Pulse Rate is out of range!"),
       (spo2 < 90, "Oxygen Saturation out of range!"),
   ]
-  
-  for condition, message in checks:
-      if condition:
-          print(message)
-          vitalsOutofRange()
-          return False
+  failed = next(((cond, msg) for cond, msg in checks if cond), None)
+
+  if failed:
+      print(failed[1])
+      return False
   return True
